@@ -1,0 +1,35 @@
+{% load static %}<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{page_title}}{{site_setup.title}}</title>
+    <link rel='stylesheet' href="{% static 'blog/css/styles.css' %}">
+    <link rel='stylesheet' href="{% static 'blog/css/remedy.css' %}">
+    {% if site_setup.fave_icon %}
+        <link rel='shortcut icon' href="{{site_setup.fave_icon.url}}" type='image/png'>
+    {% endif %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.2/codemirror.min.css">
+    {% block add_code_mirror %}{% endblock add_code_mirror %}
+</head>
+<body>
+    <div class="blog-wrapper">
+      {% if site_setup.show_header %}
+        {% include 'blog/partials/_header.html' %}      
+      {% endif %}
+
+        {% block content %}{% endblock content %}
+      
+      {% if site_setup.show_pagination %}
+        {% include 'blog/partials/_pagination.html' %}
+      {% endif %}
+
+
+      {% if site_setup.show_footer %}
+        {% include 'blog/partials/_footer.html' %}
+      {% endif %}
+    </div>
+  </body>
+</html>
